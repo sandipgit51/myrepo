@@ -1,5 +1,6 @@
 package com.example.demo.configu;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -11,13 +12,15 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
+
+@Slf4j
 public class Security {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-
+     log.info("welcome to security");
         httpSecurity.
                 httpBasic(withDefaults());
-
+        httpSecurity.formLogin(withDefaults());
         httpSecurity.authorizeHttpRequests(authorize -> {
 
           //   authorize.requestMatchers("/logi").permitAll();
